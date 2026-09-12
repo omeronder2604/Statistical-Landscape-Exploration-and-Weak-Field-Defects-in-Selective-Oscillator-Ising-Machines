@@ -30,7 +30,7 @@ The current version supports:
 └── .gitignore
 
 ```
-
+---
 ## Model
 
 The oscillator stage evolves phase variables $\phi_i$ under noisy coupled dynamics with all-to-all Ising couplings $J_{ij}$, second-harmonic pinning, and an annealed noise scale. Spins are read out from phases by
@@ -55,6 +55,7 @@ $$
 
 for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \(\sigma_J\).
 
+---
 ### Random Number Generation and Reproducibility
 
 To ensure strict reproducibility across independent realizations and distributed MPI environments, this codebase implements a centralized random number generator (RNG) architecture using NumPy's `SeedSequence` as in DH-OIM+ and MH codes in HPC folder. 
@@ -64,6 +65,7 @@ To ensure strict reproducibility across independent realizations and distributed
 * **Initial Phases:** Initial oscillator phases are sampled uniformly from $0$ to $2\pi$. To maintain topology independence, these phases are generated globally using a dedicated stream before being sliced and distributed to local MPI ranks.
 * **Dynamical Noise and MH Updates:** For the highly parallelized numerical integration and Markov chain steps, the epoch and MH streams spawn unique PCG64 C-engines mapped exactly to the active local replicas. These replica-specific generators are passed directly into the Numba-compiled functions to provide structurally isolated Gaussian noise for the oscillator continuous dynamics and uniform random sampling for discrete spin flips.
 
+---
 ## Analysis and plotting
 
 MH and OIM plotted quantities include:
@@ -87,7 +89,7 @@ and analyses include:
 - Oscillator force targeting (mean structural force on flipped vs. unflipped spins and weak-field defect targeting percentage)
 - Field balance diagnostics (weak-row versus cancellation ratios and balanced-site enrichment)
 
-
+---
 ## Scientific purpose
 
 This code is built around the hypothesis that the oscillator dynamics rapidly finds a useful low-energy basin, while a short Metropolis-Hastings stage efficiently heals weak-field defects that remain hard for the continuous oscillator dynamics to resolve.
@@ -99,7 +101,7 @@ In this interpretation:
 - local-field and overlap diagnostics reveal where the oscillator dynamics succeeds or fails.
 
 
-
+---
 ## Citation
 
 If this code is used in academic work, cite the associated manuscript when available:
