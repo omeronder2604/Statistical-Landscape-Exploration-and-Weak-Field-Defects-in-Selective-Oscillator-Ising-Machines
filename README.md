@@ -57,12 +57,12 @@ for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \
 
 ### Random Number Generation and Reproducibility
 
-To ensure strict reproducibility across independent realizations and distributed MPI environments, this codebase implements a centralized random number generator (RNG) architecture using NumPy's `SeedSequence`[cite: 1]. 
+To ensure strict reproducibility across independent realizations and distributed MPI environments, this codebase implements a centralized random number generator (RNG) architecture using NumPy's `SeedSequence` as in DH-OIM+ and MH codes in HPC folder. 
 
-* **Master Seed and Independent Streams:** A single `GLOBAL_SEED` initializes a master `SeedSequence`[cite: 1]. This master sequence spawns independent branches for every disorder realization, ensuring that multiple seeds do not overlap or correlate[cite: 1]. Each realization further branches into four distinct streams: one for the structural matrix, one for initial phases, one for oscillator epochs, and one for the Metropolis-Hastings refinement[cite: 1].
-* **Structural Disorder (\(J\) Matrix):** The \(J\) matrix is generated using its own dedicated RNG stream to ensure the exact same topological disorder is constructed regardless of the number of CPU cores or MPI ranks used[cite: 1].
-* **Initial Phases:** Initial oscillator phases are sampled uniformly from $0$ to \(2\pi\)[cite: 1]. To maintain topology independence, these phases are generated globally using a dedicated stream before being sliced and distributed to local MPI ranks[cite: 1].
-* **Dynamical Noise and MH Updates:** For the highly parallelized numerical integration and Markov chain steps, the epoch and MH streams spawn unique PCG64 C-engines mapped exactly to the active local replicas[cite: 1]. These replica-specific generators are passed directly into the Numba-compiled functions to provide structurally isolated Gaussian noise for the oscillator continuous dynamics and uniform random sampling for discrete spin flips[cite: 1].
+* **Master Seed and Independent Streams:** A single `GLOBAL_SEED` initializes a master `SeedSequence`. This master sequence spawns independent branches for every disorder realization, ensuring that multiple seeds do not overlap or correlate. Each realization further branches into four distinct streams: one for the structural matrix, one for initial phases, one for oscillator epochs, and one for the Metropolis-Hastings refinement.
+* **Structural Disorder (\(J\) Matrix):** The \(J\) matrix is generated using its own dedicated RNG stream to ensure the exact same topological disorder is constructed regardless of the number of CPU cores or MPI ranks used.
+* **Initial Phases:** Initial oscillator phases are sampled uniformly from $0$ to $2\pi$. To maintain topology independence, these phases are generated globally using a dedicated stream before being sliced and distributed to local MPI ranks.
+* **Dynamical Noise and MH Updates:** For the highly parallelized numerical integration and Markov chain steps, the epoch and MH streams spawn unique PCG64 C-engines mapped exactly to the active local replicas. These replica-specific generators are passed directly into the Numba-compiled functions to provide structurally isolated Gaussian noise for the oscillator continuous dynamics and uniform random sampling for discrete spin flips.
 
 ## Analysis and plotting
 
