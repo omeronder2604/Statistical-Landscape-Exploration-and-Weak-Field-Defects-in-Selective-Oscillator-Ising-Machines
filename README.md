@@ -82,7 +82,7 @@ MH and OIM plotted quantities include:
 and analyses include:
 
 - Minimum and mean energy states (post-oscillator and post-MH refinement)
-- \(P(q)\) overlap distribution quality (clutter fraction and Shannon entropy)
+- $P(q)$ overlap distribution quality (clutter fraction and Shannon entropy)
 - Ultrametricity and replica symmetry breaking (RSB) quality (via cophenetic correlation)
 - Valley diversity metrics (pairwise Hamming distances, distinct cluster counts, and inter/intra-cluster separation ratios)
 - Metropolis-Hastings workload analysis ($Z_2$-symmetry corrected spin flip rates)
