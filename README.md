@@ -68,7 +68,7 @@ Main plotted quantities include:
 - local-field distributions before and after MH,
 - spin flips induced by MH.
 
-```
+
 
 ## Scientific purpose
 
@@ -80,7 +80,7 @@ In this interpretation:
 - the MH stage performs local defect healing,
 - local-field and overlap diagnostics reveal where the oscillator dynamics succeeds or fails.
 
----
+
 
 ## Citation
 
