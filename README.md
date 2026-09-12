@@ -19,13 +19,13 @@ The current version supports:
 ```text
 
 .
-├── Gset/             # Graph datasets for max-cut benchmarking
+├── Gset/             # MH and DH-OIM+ codes for max-cut benchmarking
 ├── HPC/              # Codes and Slurm batch scripts for HPC cluster submission
 ├── MH/               # Pure-Metropolis-Hastings plots and data analysis such as min/mean energy, Z_2-Hamming distance, and basin clustering
 ├── OIM/              # DH-OIM+ plots and data analysis such as min/mean energy, Z_2-Hamming distance, and basin clustering
 ├── dendrogram/       # Dendrogram plots for pure-MH, OIM+ and DH-OIM+ algorithms via Z_2-Hamming distance
 ├── energy prog/      # Energy progression tracking and history arrays for the single J realization with J_0=0
-├── raw_data/         # Output directory for generated .npz archive data
+├── raw_data/         # Output directory for generated .npz archive data and Graph datasets for max-cut benchmarking
 ├── schedule/         # Multi-epoch annealing and parameter timing schedule plot for the OIM+
 └── .gitignore
 
