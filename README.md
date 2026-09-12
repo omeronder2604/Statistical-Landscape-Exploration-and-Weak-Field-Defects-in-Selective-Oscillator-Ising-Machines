@@ -29,6 +29,7 @@ The current version supports:
 ├── schedule/         # Multi-epoch annealing and parameter timing schedule plot for the OIM+
 ├── .gitignore        
 
+---
 
 ## Model
 
@@ -71,7 +72,7 @@ Main plotted quantities include:
 
 ---
 
-## Scientific purpose
+## **Scientific purpose**
 
 This code is built around the hypothesis that the oscillator dynamics rapidly finds a useful low-energy basin, while a short Metropolis-Hastings stage efficiently heals weak-field defects that remain hard for the continuous oscillator dynamics to resolve.
 
