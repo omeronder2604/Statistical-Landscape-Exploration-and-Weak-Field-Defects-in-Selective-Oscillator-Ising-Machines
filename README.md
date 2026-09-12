@@ -58,7 +58,7 @@ for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \
 
 ---
 
-## Analysis and plotting
+**## Analysis and plotting**
 Main plotted quantities include:
 
 - full annealing schedule,
@@ -72,7 +72,7 @@ Main plotted quantities include:
 
 ---
 
-## **Scientific purpose**
+**## Scientific purpose**
 
 This code is built around the hypothesis that the oscillator dynamics rapidly finds a useful low-energy basin, while a short Metropolis-Hastings stage efficiently heals weak-field defects that remain hard for the continuous oscillator dynamics to resolve.
 
