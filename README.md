@@ -56,7 +56,7 @@ $$
 for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \(\sigma_J\).
 
 ---
-### Random Number Generation and Reproducibility
+## Random Number Generation and Reproducibility
 
 To ensure strict reproducibility across independent realizations and distributed MPI environments, this codebase implements a centralized random number generator (RNG) architecture using NumPy's `SeedSequence` as in DH-OIM+ and MH codes in HPC folder. 
 
