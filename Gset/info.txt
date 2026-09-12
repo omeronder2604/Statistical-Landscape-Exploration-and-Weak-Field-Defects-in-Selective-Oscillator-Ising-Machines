@@ -1,0 +1,1 @@
+Here, we have G-set graph data. txt files form J matrices and npz are solution of them by DH--OIM+ algorithm. OIM and MH py files are local solvers. We upload oscillator search npz file to OIM file and only run MH refinement part at OIM py. MH code directly uploads txt files and solves the max-cut problem. Associated .txt and .npz files can be found in raw data.

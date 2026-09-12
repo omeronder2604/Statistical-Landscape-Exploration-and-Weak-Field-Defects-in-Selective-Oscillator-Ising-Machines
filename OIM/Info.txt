@@ -1,0 +1,1 @@
+Here, we plot and sort data about OIM algotihm both for ferro/anti-ferro cases. We use 30 seed averaged data saved in associated npz files.
