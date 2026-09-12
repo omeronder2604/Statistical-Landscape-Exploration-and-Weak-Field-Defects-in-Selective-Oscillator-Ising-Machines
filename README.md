@@ -27,9 +27,9 @@ The current version supports:
 ├── energy prog/      # Energy progression tracking and history arrays for the single J realization with J_0=0
 ├── raw_data/         # Output directory for generated .npz archive data
 ├── schedule/         # Multi-epoch annealing and parameter timing schedule plot for the OIM+
-├── .gitignore        
+└── .gitignore
 
----
+```
 
 ## Model
 
@@ -56,9 +56,7 @@ $$
 for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \(\sigma_J\).
 
 
----
-
-**## Analysis and plotting**
+## Analysis and plotting
 Main plotted quantities include:
 
 - full annealing schedule,
@@ -70,9 +68,9 @@ Main plotted quantities include:
 - local-field distributions before and after MH,
 - spin flips induced by MH.
 
----
+```
 
-**## Scientific purpose**
+## Scientific purpose
 
 This code is built around the hypothesis that the oscillator dynamics rapidly finds a useful low-energy basin, while a short Metropolis-Hastings stage efficiently heals weak-field defects that remain hard for the continuous oscillator dynamics to resolve.
 
