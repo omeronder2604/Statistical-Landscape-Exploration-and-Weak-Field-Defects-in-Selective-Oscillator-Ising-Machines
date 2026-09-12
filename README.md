@@ -57,17 +57,27 @@ for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \
 
 
 ## Analysis and plotting
-Main plotted quantities include:
+
+MH and OIM plotted quantities include:
 
 - full annealing schedule,
 - energy over schedule,
 - oscillator and post-MH energy histograms,
 - overlap matrices,
-- overlap distribution `P(q)`,
+- overlap distribution \(P(q)\),
 - basin dendrograms,
 - local-field distributions before and after MH,
 - spin flips induced by MH.
 
+and analyses include:
+
+- Minimum and mean energy states (post-oscillator and post-MH refinement)
+- \(P(q)\) overlap distribution quality (clutter fraction and Shannon entropy)
+- Ultrametricity and replica symmetry breaking (RSB) quality (via cophenetic correlation)
+- Valley diversity metrics (pairwise Hamming distances, distinct cluster counts, and inter/intra-cluster separation ratios)
+- Metropolis-Hastings workload analysis (\(Z_2\)-symmetry corrected spin flip rates)
+- Oscillator force targeting (mean structural force on flipped vs. unflipped spins and weak-field defect targeting percentage)
+- Field balance diagnostics (weak-row versus cancellation ratios and balanced-site enrichment)
 
 
 ## Scientific purpose
