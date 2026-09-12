@@ -85,7 +85,7 @@ and analyses include:
 - \(P(q)\) overlap distribution quality (clutter fraction and Shannon entropy)
 - Ultrametricity and replica symmetry breaking (RSB) quality (via cophenetic correlation)
 - Valley diversity metrics (pairwise Hamming distances, distinct cluster counts, and inter/intra-cluster separation ratios)
-- Metropolis-Hastings workload analysis ($\mathbb{Z}_2$)-symmetry corrected spin flip rates)
+- Metropolis-Hastings workload analysis ($Z_2$-symmetry corrected spin flip rates)
 - Oscillator force targeting (mean structural force on flipped vs. unflipped spins and weak-field defect targeting percentage)
 - Field balance diagnostics (weak-row versus cancellation ratios and balanced-site enrichment)
 
