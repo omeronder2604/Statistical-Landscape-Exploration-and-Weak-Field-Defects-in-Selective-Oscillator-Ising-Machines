@@ -33,7 +33,7 @@ The current version supports:
 
 ## Model
 
-The oscillator stage evolves phase variables $\phi_i$ under noisy coupled dynamics with all-to-all Ising couplings \(J_{ij}\), second-harmonic pinning, and an annealed noise scale. Spins are read out from phases by
+The oscillator stage evolves phase variables $\phi_i$ under noisy coupled dynamics with all-to-all Ising couplings $J_{ij}$, second-harmonic pinning, and an annealed noise scale. Spins are read out from phases by
 
 $$
 s_i = \mathrm{sign}(\cos \phi_i).
