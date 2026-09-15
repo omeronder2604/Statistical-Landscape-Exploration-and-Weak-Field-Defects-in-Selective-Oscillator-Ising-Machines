@@ -109,7 +109,7 @@ If this code is used in academic work, cite the associated manuscript when avail
 ```text
 Ö. Önder and A. C. Keser,
 "Statistical Landscape Exploration and Weak-Field Defects in Selective Oscillator Ising Machines,"
-Arxiv id: XXXXXXXX
+Arxiv id: arXiv:2609.14550
 ```
 
 ---
