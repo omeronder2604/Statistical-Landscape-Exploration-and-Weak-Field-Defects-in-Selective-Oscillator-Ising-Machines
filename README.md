@@ -53,7 +53,7 @@ $$
 J_{ij} \sim \mathrm{Normal}\left(\frac{J_0}{N}, \frac{\sigma_J^2}{2N}\right)
 $$
 
-for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls \(\sigma_J\).
+for off-diagonal entries, where `J0_VAL` controls \(J_0\) and `J_std` controls $\sigma_J$.
 
 ---
 ## Random Number Generation and Reproducibility
