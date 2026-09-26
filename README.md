@@ -1,6 +1,6 @@
 # Statistical Landscape Exploration and Weak-Field Defects in Selective Oscillator Ising Machines
 
-This repository contains a Python implementation of a hybrid oscillator Ising machine workflow for dense spin-glass optimization experiments.
+This repository contains a Python implementation of a hybrid oscillator Ising machine workflow for dense and sparse spin-glass optimization experiments.
 
 The codebase simulates ensembles of noisy, coupled phase oscillators, maps their continuous phases to binary Ising spins, and subsequently applies a Metropolis-Hastings (MH) refinement stage. The workflow is intended for studying the statistical structure of oscillator Ising machine outputs, especially the weak-local-field defects that remain after the continuous oscillator stage and can be healed by short Monte Carlo refinement.
 
@@ -9,7 +9,7 @@ The current version supports:
 - CPU execution with Numba-parallel kernels.
 - Distributed execution across high-performance computing (HPC) nodes using MPI (mpi4py).
 - Multi-epoch annealing schedules with linearly interpolated noise amplitudes.
-- Sherrington-Kirkpatrick-style dense random coupling matrices and G-set graphs.
+- Sherrington-Kirkpatrick-style dense random coupling matrices and dense/sparse G-set graphs.
 - Post-run analysis and plotting of energies, overlaps, basins, local fields, and spin flips.
 
 ---
