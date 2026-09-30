@@ -552,13 +552,13 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     print("\nPlotting Distributions...")
     
-    plot_energy_progression(avg_h_e, h_t, h_ks, pts, "Avg_Plot_1_EnergyProg.pdf")
+    plot_energy_progression(avg_h_e, h_t, h_ks, pts, "AF_Avg_Plot_1_EnergyProg.pdf")
     
-    plot_comparative_pq_distribution(master_osc_overlaps, master_mh_overlaps, "Avg_Plot_2_Comparative_Overlap.pdf")
-    plot_comparative_energy_distribution(master_osc_energies, master_energies, "Avg_Plot_3_Comparative_Energy.pdf")
+    plot_comparative_pq_distribution(master_osc_overlaps, master_mh_overlaps, "AF_Avg_Plot_2_Comparative_Overlap.pdf")
+    plot_comparative_energy_distribution(master_osc_energies, master_energies, "AF_Avg_Plot_3_Comparative_Energy.pdf")
     
-    plot_flipped_fields(all_flipped_fields, all_osc_fields_flat, "Avg_Plot_4_Flipped_Fields.pdf")
-    plot_comparative_fields(all_osc_fields_flat, all_mh_fields_flat, "Avg_Plot_5_Comparative_Fields.pdf")
+    plot_flipped_fields(all_flipped_fields, all_osc_fields_flat, "AF_Avg_Plot_4_Flipped_Fields.pdf")
+    plot_comparative_fields(all_osc_fields_flat, all_mh_fields_flat, "AF_Avg_Plot_5_Comparative_Fields.pdf")
     
     print("="*60)
     print("CAPTION DATA: EXACT ENERGY MINIMA")

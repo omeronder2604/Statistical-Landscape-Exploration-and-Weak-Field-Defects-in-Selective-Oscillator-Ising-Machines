@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p hamsi
-#SBATCH -A omonder
+##SBATCH -A <ACCOUNT>        # Uncomment and set if required by your cluster
 #SBATCH -J SK
 #SBATCH -N 8                    # Requesting 8 distinct nodes
 #SBATCH --ntasks=8              # 8 MPI processes total
@@ -10,7 +10,8 @@
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 
-cd /arf/scratch/omonder/Remedy/linear/Seed_Avg_Sel/
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 # 1. Load the required modules in the correct order
 module load miniconda3 

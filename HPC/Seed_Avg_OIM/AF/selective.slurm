@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p hamsi
-#SBATCH -A omonder
+##SBATCH -A <ACCOUNT>        # Uncomment and set if required by your cluster
 #SBATCH -J SK
 #SBATCH -N 8                    # Requesting 8 distinct nodes
 #SBATCH --ntasks=8              # 8 MPI processes total
@@ -10,7 +10,8 @@
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 
-cd /arf/scratch/omonder/Remedy/linear/Seed_Avg_Sel/AF/
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 # 1. Load the required modules in the correct order
 module load miniconda3 
@@ -25,4 +26,4 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export PYTHONIOENCODING=utf8
 
 # 4. Launch the Python script using mpirun
-mpirun -np 8 python avg.py
+mpirun -np 8 python AF_avg.py

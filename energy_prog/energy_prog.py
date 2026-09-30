@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter, LogLocator, LogFormatterMathtext
 import time
 import os
+import shutil
 from numba import njit, prange
 
 # ==========================================
@@ -377,8 +378,12 @@ if __name__ == "__main__":
             
         print(f"Successfully sliced Hybrid Data. (Oscillator steps: {start_mh_idx * sample_rate}, MH Steps: {hybrid_mh_e.shape[-1] * sample_rate})")
 
-        plot_oscillator_only(osc_h_e, hybrid_h_t, hybrid_h_ks, hybrid_pts, f"{FILE_BASE}_Plot_1_Oscillator_Only.pdf")
-        plot_mh_comparison(pure_replica_h_e, pure_h_t, hybrid_mh_e, f"{FILE_BASE}_Plot_2_MH_Comparison.pdf")
+        oscillator_output = f"{FILE_BASE}_Plot_1_Oscillator_Only.pdf"
+        mh_output = f"{FILE_BASE}_Plot_2_MH_Comparison.pdf"
+        plot_oscillator_only(osc_h_e, hybrid_h_t, hybrid_h_ks, hybrid_pts, oscillator_output)
+        plot_mh_comparison(pure_replica_h_e, pure_h_t, hybrid_mh_e, mh_output)
+        shutil.copyfile(oscillator_output, "Osc_energy_prog.pdf")
+        shutil.copyfile(mh_output, "MH_energy_prog.pdf")
         
         print("\nAll target plots generated successfully!")
         

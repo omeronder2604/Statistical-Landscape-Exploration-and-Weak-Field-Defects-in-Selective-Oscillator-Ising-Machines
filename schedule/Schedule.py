@@ -124,6 +124,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.95])
 # Export
 filename = "OIM+_Schedule_Normalized.pdf"
 plt.savefig(filename, format="pdf", bbox_inches="tight")
+plt.savefig("OIM_Schedule.pdf", format="pdf", bbox_inches="tight")
 plt.close()
 
-print(f"Plot successfully generated and saved as: {filename}")
+print(f"Plots successfully generated and saved as: {filename}, OIM_Schedule.pdf")

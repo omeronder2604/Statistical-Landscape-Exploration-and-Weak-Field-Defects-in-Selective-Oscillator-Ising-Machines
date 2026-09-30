@@ -363,11 +363,11 @@ if __name__ == "__main__":
     # PLOTTING
     # --------------------------------------------------------
     print("\nPlotting Distributions...")
-    plot_energy_progression(avg_h_e, h_t, "Avg_Plot_1_PureMH_EnergyProg.pdf")
-    plot_pq_distribution(master_mh_overlaps, "Avg_Plot_PureMH_Overlap.pdf")
-    plot_energy_distribution(master_energies, "Avg_Plot_PureMH_EnergyDist.pdf")
+    plot_energy_progression(avg_h_e, h_t, "AF_Avg_Plot_1_PureMH_EnergyProg.pdf")
+    plot_pq_distribution(master_mh_overlaps, "AF_Avg_Plot_PureMH_Overlap.pdf")
+    plot_energy_distribution(master_energies, "AF_Avg_Plot_PureMH_EnergyDist.pdf")
     
-    plot_local_fields(master_mh_fields, "Avg_Plot_PureMH_LocalFields.pdf")
+    plot_local_fields(master_mh_fields, "AF_Avg_Plot_PureMH_LocalFields.pdf")
     
     print("="*60)
     print("CAPTION DATA: EXACT ENERGY MINIMA")

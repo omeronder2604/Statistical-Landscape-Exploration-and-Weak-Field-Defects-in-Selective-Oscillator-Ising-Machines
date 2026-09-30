@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific OS, editor, and HPC outputs
+.DS_Store
+*.out
+*.err
+slurm-*.out
+slurm-*.err
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Generated Palmer-Pond analysis artifacts
+PP/outputs/

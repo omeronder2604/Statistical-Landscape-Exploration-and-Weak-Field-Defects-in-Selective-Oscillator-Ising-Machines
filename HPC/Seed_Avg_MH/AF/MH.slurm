@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p hamsi
-#SBATCH -A omonder
+##SBATCH -A <ACCOUNT>        # Uncomment and set if required by your cluster
 #SBATCH -J MH
 #SBATCH -N 2                   # Requesting 2 nodes to spread out the heavy computation
 #SBATCH --ntasks=8             # 8 MPI processes total (1 process for each of our 8 lambda values)
@@ -9,7 +9,8 @@
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 
-cd /arf/scratch/omonder/Remedy/linear/MH/AF/
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 # 1. Load the required modules in the correct order
 module load miniconda3 
@@ -21,4 +22,4 @@ export NUMBA_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 # 3. Launch the Python script using mpirun
-mpirun -np 8 python MH.py
+mpirun -np 8 python AF_MH.py

@@ -17,7 +17,7 @@ from numba import njit, prange
 TARGET_TXT = "G36.txt"  
 
 GLOBAL_SEED = 42
-num_replicas = 402
+num_replicas = 448  # Match the archived OIM checkpoint population
 sample_rate = 500  
 
 # Exact Step/dt Logic Preserved
