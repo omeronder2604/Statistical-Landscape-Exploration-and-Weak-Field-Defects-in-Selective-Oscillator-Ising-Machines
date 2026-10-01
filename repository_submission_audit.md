@@ -14,7 +14,7 @@ Present at audit start:
 - `README.md`, `LICENSE`, `.gitignore`
 - `OIM/`, `MH/`, `Gset/`, `HPC/`, `dendrogram/`, `energy_prog/`, `schedule/`, `raw_data/`
 - 14 active Python files
-- five public-repository Slurm examples
+- five public-repository Slurm examples before restoration of the G-set generator workflow
 
 Absent at audit start:
 
@@ -24,7 +24,10 @@ Absent at audit start:
 
 Added after the initial audit:
 
-- `PP/local_field_analysis.py` and `PP/README_fig6_analysis.md`, providing the Palmer-Pond / frozen-field post-processing workflow. The active repository now contains 15 Python files.
+- `PP/local_field_analysis.py` and `PP/README_fig6_analysis.md`, providing the Palmer-Pond / frozen-field post-processing workflow.
+- `Gset/Gset_OIM_HPC.py` and `Gset/Gset.slurm`, restoring the MPI oscillator checkpoint-generation workflow.
+
+The active repository now contains 16 Python files and six public Slurm examples.
 
 The active manuscript is `OIMp_v3.tex` inside the adjacent manuscript ZIP, not inside the Git repository. It references 13 distinct figure PDFs (17 panel files when AF and multi-panel components are counted individually).
 
@@ -46,6 +49,7 @@ Commands are shown from the directory stated in the Working directory column. Pr
 | `energy_prog/energy_prog.py` | Recreates pure MH for seed 52 and plots representative OIM+/MH histories | 0 | local CPU; expensive | `AllToAll_Hybrid_EA.npz` | two comparison PDFs | seed, target archive, MH schedule | `raw_data`; `python ../energy_prog/energy_prog.py` |
 | `dendrogram/dendograms.py` | Recreates seed-52 pure MH and plots three Z2 dendrograms | 0 | local CPU; expensive | `AllToAll_Hybrid_EA.npz` | three manuscript-named PDFs | seed, target archive, MH schedule | `raw_data`; `python ../dendrogram/dendograms.py` |
 | `schedule/Schedule.py` | Plots four-epoch schedule | schedule | local CPU | none | `OIM+_Schedule_Normalized.pdf`; `OIM_Schedule.pdf` | hard-coded epoch list | `schedule`; `python Schedule.py` |
+| `Gset/Gset_OIM_HPC.py` | Four-epoch MPI oscillator search and optional local MH tuning | instance | MPI/HPC; expensive | `G*.txt`; tuning mode reads `checkpoint_G*.txt.npz` | search mode writes 448-replica `checkpoint_G*.txt.npz`; tuning mode prints cut values | `RUN_MODE`, `TARGET_FILES`, replica count, oscillator schedule, MH settings | graph-data directory; `mpirun -np 32 python ../../Gset/Gset_OIM_HPC.py` |
 | `Gset/Gset_OIM.py` | Applies 10k-proposal MH refinement to an archived 448-replica OIM checkpoint | instance | local CPU; expensive | `checkpoint_G*.txt.npz` | printed cut values only | `TARGET_NPZ`, refinement temperatures | `raw_data/Gset`; `python ../../Gset/Gset_OIM.py` |
 | `Gset/Gset_MH.py` | Full 448-replica pure-MH G-set baseline | instance | local CPU; expensive | `G*.txt` | printed cut values only | `TARGET_TXT`, replica count, update schedule | `raw_data/Gset`; `python ../../Gset/Gset_MH.py` |
 | `PP/local_field_analysis.py` | Palmer-Pond local fields, endpoint corrections, empirical seed-bootstrap kernel, and frozen-field reference | 0 | local CPU post-processing | 30-seed OIM archive | two manuscript-named figures, combined figure, PNGs, and four CSV tables | NPZ positional argument, `--outdir`, kernel bins/bootstrap constants | repository root; `python PP/local_field_analysis.py raw_data/AllToAll_Hybrid_EA_SeedAvg_AveragedData.npz --outdir PP/outputs` |
@@ -54,7 +58,7 @@ Most legacy production and analysis scripts use source-level configuration
 constants. `PP/local_field_analysis.py` is an exception and accepts the input
 NPZ and optional output directory through `argparse`.
 
-The active G-set comparison uses the supplied 448-replica oscillator checkpoints as fixed archived input and a 448-replica pure-MH baseline. `Gset_OIM.py` reads the population size from `replica_states.shape[0]`; `Gset_MH.py` exposes 448 as its comparison default. The checkpoint-generation stage is outside the active repository.
+The active G-set comparison uses a 448-replica oscillator population and a 448-replica pure-MH baseline. The recommended reproduction path uses the supplied checkpoints: `Gset_OIM.py` reads their population from `replica_states.shape[0]`, while `Gset_MH.py` exposes 448 as its comparison default. `Gset_OIM_HPC.py` restores the end-to-end option: search mode distributes 448 replicas over MPI ranks, uses Numba threading within each rank, executes the documented four epochs, and writes the checkpoint archives. Its tuning mode is an alternate batch interface to the short MH refinement logic.
 
 ## HPC / Slurm audit
 
@@ -65,8 +69,9 @@ The active G-set comparison uses the supplied 448-replica oscillator checkpoints
 | `HPC/Seed_Avg_OIM/AF/selective.slurm` | `hamsi` | 8 | 8 | 56 | 06:00:00 | `AF_avg.py` |
 | `HPC/Seed_Avg_MH/MH.slurm` | `hamsi` | 2 | 8 | 14 | 01:00:00 | `MH.py` |
 | `HPC/Seed_Avg_MH/AF/MH.slurm` | `hamsi` | 2 | 8 | 14 | 01:00:00 | `AF_MH.py` |
+| `Gset/Gset.slurm` | `hamsi` | 8 | 32 | 14 | 24:00:00 | `Gset_OIM_HPC.py` |
 
-All examples load `miniconda3`, activate `spinglass`, load `openmpi`, export `NUMBA_NUM_THREADS` and `OMP_NUM_THREADS` from `SLURM_CPUS_PER_TASK`, and invoke `mpirun -np 8`. Original private account and scratch paths were removed from the public examples. Cluster-specific partition, modules, conda environment, and resources remain examples that require adaptation. They were not production-tested during this repository audit. Submit with `sbatch <file>.slurm` from its directory.
+All examples load `miniconda3`, activate `spinglass`, load `openmpi`, and export `NUMBA_NUM_THREADS` and `OMP_NUM_THREADS` from `SLURM_CPUS_PER_TASK`. The five SK examples invoke eight MPI ranks; the G-set generator invokes 32 MPI ranks and distributes its 448 replicas across those ranks, with Numba threading inside each rank. Original private account and scratch paths were removed from the public examples. Cluster-specific partition, modules, conda environment, and resources remain examples that require adaptation. They were not production-tested during this repository audit. Submit with `sbatch <file>.slurm` from its directory.
 
 ## Dependency audit
 
@@ -80,7 +85,7 @@ AST import scanning found only these third-party packages:
 
 Standard-library imports are `concurrent.futures`, `os`, `sys`, and `time`. No imports of pandas, scikit-learn, networkx, or seaborn were found. `requirements.txt` therefore contains only the five observed third-party packages. No versions or original Python version were reliably available, so packages were not arbitrarily pinned and no `environment.yml` was created.
 
-Local availability check on the audit host found NumPy, SciPy, Numba, and Matplotlib, but not `mpi4py`. All 15 Python files passed a no-write `compile(...)` syntax check.
+Local availability check on the audit host found NumPy, SciPy, Numba, and Matplotlib, but not `mpi4py`. All 16 Python files passed a no-write `compile(...)` syntax check.
 
 ## Manuscript figure / data mapping
 
@@ -116,7 +121,7 @@ AF verification from stored data: the AF matrices have the intended mean shift `
 | `tab:mh_protocols` | OIM refinement and pure-MH drivers | PASS | 10k refinement and 100k/10k/10k pure-MH stages agree |
 | `tab:distance_metrics` | OIM/MH analysis scripts and archived state arrays | PASS | Z2 distances, average linkage, and largest-gap threshold are represented |
 | `tab:weak_field_metrics` | `calculate_weak_field_metrics` in OIM scripts plus `PP/local_field_analysis.py` | PASS | Both panels and all reported scalar metrics are reproducible from the archived 30-seed data |
-| `tab:gset_results` | `Gset_OIM.py`, `Gset_MH.py`, graph texts, and checkpoints | PASS for protocol mapping | Active comparison uses 448 replicas for both paths; results are printed rather than archived as a separate table artifact |
+| `tab:gset_results` | `Gset_OIM_HPC.py`, `Gset_OIM.py`, `Gset_MH.py`, graph texts, and checkpoints | PASS for protocol mapping | Generator and active comparison use 448 replicas; comparison results are printed rather than archived as a separate table artifact |
 
 ## Scientific wording audit
 
@@ -140,6 +145,9 @@ Findings at audit start:
 - G-set scripts require source edits to select an instance;
 - no absolute Windows path was embedded in active Python source.
 
+The subsequently restored `Gset/Gset.slurm` also contained a private account,
+scratch path, citation placeholders, and the stale `Gset.py` entry point.
+
 Public-facing remediation:
 
 - account and scratch paths were removed from Slurm examples;
@@ -153,14 +161,14 @@ Public-facing remediation:
 - **Types:** 14 `.npz` files (approximately 415.5 MiB) and nine G-set `.txt` files (approximately 1.2 MiB).
 - **Largest:** two OIM seed-averaged archives at approximately 64.6 MiB each; two pure-MH archives at approximately 46.1 MiB each; four 2,000-node G-set checkpoints at approximately 37.4 MiB each.
 - **GitHub:** no individual file exceeds 100 MiB. The two approximately 64.6 MiB OIM archives exceed GitHub's 50 MiB warning threshold; the approximately 46.1 MiB pure-MH archives do not. The repository is large for a normal source clone.
-- **Relevance:** the five SK archives are directly used by manuscript analysis/representative figures. G-set graph texts and the fixed archived 448-replica checkpoints support the table workflow; checkpoint generation is outside the active repository.
+- **Relevance:** the five SK archives are directly used by manuscript analysis/representative figures. G-set graph texts and the archived 448-replica checkpoints support the table workflow; `Gset/Gset_OIM_HPC.py` provides the checkpoint-regeneration path.
 
 Recommendation: use Git LFS or place full archives in Zenodo/an institutional repository and keep a reduced representative dataset in Git. Because these files are already tracked, LFS migration or history rewriting must be a deliberate manual action; it was not performed automatically.
 
 ## Portability and run-command validation
 
 - All documented script paths exist.
-- All 15 Python files passed an in-memory syntax compilation without writing `__pycache__`.
+- All 16 Python files passed an in-memory syntax compilation without writing `__pycache__`.
 - NumPy, SciPy, Numba, and Matplotlib were import-discoverable on the audit host; `mpi4py` was not installed locally.
 - Production, energy-progression, dendrogram, G-set, and full analysis programs were not executed because they are expensive or write scientific outputs.
 - `PP/local_field_analysis.py` was executed against the tracked 30-seed archive. It reproduced the documented scalar values and generated all declared CSV/PDF/PNG outputs.
@@ -192,9 +200,8 @@ No file was permanently deleted.
 
 1. Confirm the original Python, NumPy, SciPy, Numba, Matplotlib, mpi4py, MPI, compiler, and BLAS versions; optionally add a locked environment after confirmation.
 2. Decide whether to use Git LFS or an external DOI-bearing data archive; update README links accordingly.
-3. If available in the future, archive the original G-set oscillator-checkpoint generator; the current release intentionally treats the supplied checkpoints as fixed input data.
-4. Decide whether public contact information should be added back intentionally.
-5. Run the remaining documented analysis commands in a clean environment and visually compare regenerated PDFs with the manuscript versions.
-6. Test all five Slurm examples on the intended cluster after setting account/environment details.
-7. Use a shorter Windows checkout path or enable Git long-path support before normal Git operations.
-8. Review the working-tree diff, then commit and push manually if satisfied. This audit did neither.
+3. Decide whether public contact information should be added back intentionally.
+4. Run the remaining documented analysis commands in a clean environment and visually compare regenerated PDFs with the manuscript versions.
+5. Test all six Slurm examples on the intended cluster after setting account/environment details and staging the G-set graph inputs for the generator job.
+6. Use a shorter Windows checkout path or enable Git long-path support before normal Git operations.
+7. Review the working-tree diff, then commit and push manually if satisfied. This audit did neither.
