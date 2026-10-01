@@ -173,15 +173,18 @@ This supports deterministic reruns under a fixed codebase, dependency stack, num
 
 Oscillator phases are read out as
 
-```math
-s_i = \operatorname{sign}(\cos \phi_i),
-```
+$$
+s_i = \mathrm{sign}(\cos \phi_i)
+$$
 
 with exact zeros assigned to `+1`. For a symmetric zero-diagonal coupling matrix, the reported Ising energy is
 
-```math
-E(\mathbf{s})=-\sum_{i<j}J_{ij}s_i s_j=-\frac{1}{2}\mathbf{s}^{T}J\mathbf{s}.
-```
+$$
+E(\mathbf{s}) =
+-\sum_{i<j} J_{ij}s_i s_j
+=
+-\frac{1}{2}\mathbf{s}^{T}J\mathbf{s}.
+$$
 
 The SK driver samples raw matrix entries with mean `J0/N` and standard deviation `J_std/sqrt(N)`, symmetrizes with `(J + J.T)/2`, and zeros the diagonal. Consequently the off-diagonal variance is `J_std**2/(2*N)`.
 
