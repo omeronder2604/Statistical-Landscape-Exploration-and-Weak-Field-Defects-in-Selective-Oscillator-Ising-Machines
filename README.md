@@ -18,9 +18,9 @@ The primary experiments use dense Sherrington-Kirkpatrick (SK) coupling matrices
 
 ```text
 .
-├── OIM/                 # OIM+/DH-OIM+ analysis; normal script is J0=0, AF-prefixed script is J0=-4
+├── OIM/                 # OIM+/DH-OIM+ plots and analysis; normal script is J0=0, AF-prefixed script is J0=-4
 ├── MH/                  # Pure-MH analysis; normal script is J0=0, AF-prefixed script is J0=-4
-├── Gset/                # Archived-checkpoint DH-OIM+ refinement and pure-MH G-set baseline
+├── Gset/                # MPI checkpoint generation, DH-OIM+ refinement, and pure-MH G-set baseline
 ├── PP/                  # Palmer-Pond weak-field and frozen-field comparison analysis
 ├── HPC/
 │   ├── Single_OIM/      # Single-realization OIM+/DH-OIM+ MPI HPC driver (J0=0)
@@ -98,7 +98,7 @@ Both regenerate a pure-MH comparison and can be expensive. The energy program
 writes the manuscript-named `Osc_energy_prog.pdf` and `MH_energy_prog.pdf`
 alongside its legacy-named copies.
 
-### Local G-set programs
+### G-set programs
 
 Run from the G-set data directory so the hard-coded target basename resolves:
 
@@ -108,7 +108,7 @@ python ../../Gset/Gset_OIM.py
 python ../../Gset/Gset_MH.py
 ```
 
-Before running, edit `TARGET_NPZ` in `Gset_OIM.py` or `TARGET_TXT` in `Gset_MH.py` to choose an instance. `Gset_OIM.py` starts from a fixed archived 448-replica continuous-phase checkpoint and performs only the short MH refinement; the active repository does not contain the production oscillator-checkpoint generator. `Gset_MH.py` provides the independently runnable 448-replica pure-MH comparison from graph text input. Both programs may be computationally expensive. See [`Gset/README.md`](Gset/README.md) for the precise scope and commands.
+Before running, edit `TARGET_NPZ` in `Gset_OIM.py` or `TARGET_TXT` in `Gset_MH.py` to choose an instance. `Gset_OIM.py` starts from a supplied archived 448-replica continuous-phase checkpoint and performs the short MH refinement; `Gset_MH.py` provides the independently runnable 448-replica pure-MH comparison. The checkpoints can also be regenerated with `Gset/Gset_OIM_HPC.py` in `RUN_MODE = "search"`, using the four-epoch MPI oscillator workflow. The recommended results-reproduction path uses the supplied checkpoints, while regeneration is the more expensive end-to-end path. See [`Gset/README.md`](Gset/README.md) for the precise workflow and commands.
 
 ### Single-realization MPI run
 
@@ -277,7 +277,7 @@ This repository is released under the [MIT License](LICENSE).
 ## Known release limitations
 
 - The exact original Python/package/compiler environment is not preserved.
-- G-set oscillator checkpoint generation is absent from the active repository; the supplied 448-replica checkpoints are fixed archived inputs.
+- G-set checkpoint regeneration requires an MPI/Numba environment and the site-specific cluster modules/resources documented in the public Slurm example; the supplied 448-replica checkpoints remain the recommended reproduction inputs.
 - The representative final OIM+ endpoint minimum and a transient trajectory minimum are distinguishable in the archive; see the audit before reusing the manuscript wording.
 - On Windows, clone to a shorter parent directory if possible. For long checkouts, use `git config --global core.longpaths true` or run individual commands as `git -c core.longpaths=true ...`.
 
