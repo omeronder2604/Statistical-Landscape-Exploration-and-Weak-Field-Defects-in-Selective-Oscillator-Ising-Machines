@@ -23,13 +23,13 @@ The primary experiments use dense Sherrington-Kirkpatrick (SK) coupling matrices
 ├── Gset/                # Archived-checkpoint DH-OIM+ refinement and pure-MH G-set baseline
 ├── PP/                  # Palmer-Pond weak-field and frozen-field comparison analysis
 ├── HPC/
-│   ├── Single_OIM/      # Single-realization OIM+/DH-OIM+ MPI driver (J0=0)
-│   ├── Seed_Avg_OIM/    # 30-realization OIM+/DH-OIM+ MPI driver
-│   │   └── AF/          # J0=-4 MPI driver
-│   └── Seed_Avg_MH/     # 30-realization pure-MH MPI driver
-│       └── AF/          # J0=-4 MPI driver
-├── dendrogram/          # Representative J0=0 dendrogram generation
-├── energy_prog/         # Representative J0=0 energy-evolution comparison
+│   ├── Single_OIM/      # Single-realization OIM+/DH-OIM+ MPI HPC driver (J0=0)
+│   ├── Seed_Avg_OIM/    # 30-realization OIM+/DH-OIM+ MPI HPC driver
+│   │   └── AF/          # J0=-4 MPI HPC driver
+│   └── Seed_Avg_MH/     # 30-realization pure-MH MPI HPC driver
+│       └── AF/          # J0=-4 MPI HPC driver
+├── dendrogram/          # Representative J0=0 dendrogram generation for single-realization OIM+/DH-OIM+
+├── energy_prog/         # Representative J0=0 energy-evolution comparison for single-realization OIM+/DH-OIM+
 ├── schedule/            # Four-epoch OIM+ schedule plot
 ├── raw_data/            # Archived SK arrays and G-set graph/checkpoint data
 ├── requirements.txt
