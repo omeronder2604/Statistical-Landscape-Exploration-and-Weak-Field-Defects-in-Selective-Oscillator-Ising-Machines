@@ -18,7 +18,7 @@ The primary experiments use dense Sherrington-Kirkpatrick (SK) coupling matrices
 
 ```text
 .
-├── OIM/                 # OIM+/DH-OIM+ analysis; normal script is J0=0, AF-prefixed script is J0=-4
+├── OIM/                 # OIM+/DH-OIM+ plots and analysis; normal script is J0=0, AF-prefixed script is J0=-4
 ├── MH/                  # Pure-MH analysis; normal script is J0=0, AF-prefixed script is J0=-4
 ├── Gset/                # Archived-checkpoint DH-OIM+ refinement and pure-MH G-set baseline
 ├── PP/                  # Palmer-Pond weak-field and frozen-field comparison analysis
