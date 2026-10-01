@@ -282,3 +282,9 @@ This repository is released under the [MIT License](LICENSE).
 - On Windows, clone to a shorter parent directory if possible. For long checkouts, use `git config --global core.longpaths true` or run individual commands as `git -c core.longpaths=true ...`.
 
 See [repository_submission_audit.md](repository_submission_audit.md) for the full submission checklist.
+
+## Contact
+
+Ömer Önder     
+Department of Physics, Bilkent University   
+Email: omer.onder@bilkent.edu.tr
