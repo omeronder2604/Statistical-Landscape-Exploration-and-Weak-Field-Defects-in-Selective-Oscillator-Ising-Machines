@@ -268,8 +268,6 @@ Exact evidence and table mappings are recorded in `repository_submission_audit.m
 }
 ```
 
-No DOI was found in the inspected project metadata.
-
 ## License
 
 This repository is released under the [MIT License](LICENSE).
