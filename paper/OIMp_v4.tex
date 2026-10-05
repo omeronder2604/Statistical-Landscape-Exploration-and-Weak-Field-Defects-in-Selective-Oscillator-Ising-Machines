@@ -957,7 +957,7 @@ inter-cluster distances characterize cluster compactness and separation,
 respectively.
 
 For $J_0=0$, the cophenetic correlation coefficients are
-$0.9111$ for OIM+, $0.9406$ for DH--OIM+, and $0.9393$ for pure MH.
+$0.911$ for OIM+, $0.941$ for DH--OIM+, and $0.939$ for pure MH.
 Thus, the pairwise-distance structure of all three ensembles is represented
 well by average-linkage hierarchical clustering, with very similar
 cophenetic correlations for DH--OIM+ and pure MH and a somewhat lower
@@ -998,22 +998,22 @@ $J_0$ & Algorithm & Cophenetic correlation &
 Inter-cluster $d_{\mathbb{Z}_2}$ & Intra-cluster $d_{\mathbb{Z}_2}$ \\
 \hline
 \multirow{3}{*}{$0$}
- & OIM+      & 0.91 & 0.35 & 0.14 \\
- & DH--OIM+  & 0.94 & 0.35 & 0.13 \\
- & Pure MH   & 0.94 & 0.40 & 0.15 \\
+ & OIM+      & 0.911 & 0.349 & 0.142 \\
+ & DH--OIM+  & 0.941 & 0.350 & 0.126 \\
+ & Pure MH   & 0.939 & 0.402 & 0.154 \\
 \hline
 \multirow{3}{*}{$-4$}
- & OIM+      & 0.89 & 0.34 & 0.15 \\
- & DH--OIM+  & 0.93 & 0.34 & 0.13 \\
- & Pure MH   & 0.93 & 0.41 & 0.17 \\
+ & OIM+      & 0.900 & 0.343 & 0.149 \\
+ & DH--OIM+  & 0.930 & 0.340 & 0.134 \\
+ & Pure MH   & 0.937 & 0.409 & 0.166 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}
 
 For $J_0=0$, the pure-MH ensemble has a mean inter-cluster
-$\mathbb{Z}_2$-Hamming distance of $0.4018$ and a mean intra-cluster
-distance of $0.1540$. For OIM+, these values are $0.3488$ and $0.1419$,
-while for DH--OIM+ they are $0.3501$ and $0.1264$, respectively.
+$\mathbb{Z}_2$-Hamming distance of $0.402$ and a mean intra-cluster
+distance of $0.154$. For OIM+, these values are $0.349$ and $0.142$,
+while for DH--OIM+ they are $0.350$ and $0.126$, respectively.
 The corresponding inter- to intra-cluster distance ratios are
 approximately $2.46$ for OIM+, $2.77$ for DH--OIM+, and $2.61$ for pure
 MH. Thus, DH--OIM+ exhibits the most compact within-cluster organization
@@ -1238,7 +1238,7 @@ reference scale
     =
     \frac{1.17}{\sqrt{2}}
     =
-    0.83 .
+    0.8273 .
     \label{eq:palmer_rescaling}
 \end{equation}
 
@@ -1256,12 +1256,12 @@ a linear fit over $0\leq |h|\leq0.4$ gives
 \begin{equation}
     P_{\rm OIM+}(h)
     \simeq
-    0.21 + 0.57 h ,
+    0.211 + 0.569 h ,
     \label{eq:oim_small_field}
 \end{equation}
 revealing appreciable finite-$N$ weight at weak local fields. The
 diagnostic MH refinement robustly suppresses this excess. Over the same
-range the fitted intercept decreases to approximately $0.1050$.
+range the fitted intercept decreases to approximately $0.105$.
 The decrease in the low-field intercept is reproduced for all tested fitting ranges and histogram resolutions.
 
 
@@ -1391,14 +1391,14 @@ than an intrinsically weak coupling environment.
 
 The disorder-averaged values are summarized in
 Table~\ref{tab:weak_field_metrics}. For $J_0=0$, corrected spins have
-$\langle |h_i|\rangle=0.3152\pm0.0289$, compared with
-$1.0816\pm0.0181$ for unchanged spins. Their total incident coupling
+$\langle |h_i|\rangle=0.32\pm0.03$, compared with
+$1.08\pm0.02$ for unchanged spins. Their total incident coupling
 magnitudes, however, are nearly the same:
-$L_i=7.9142\pm0.0617$ and $7.9569\pm0.0374$, respectively.
+$L_i=7.91\pm0.06$ and $7.96\pm0.04$, respectively.
 Correspondingly, the cancellation ratio is much smaller for corrected
 sites,
-$r_i=0.0398\pm0.0036$, than for unchanged sites,
-$r_i=0.1358\pm0.0022$.
+$r_i=0.040\pm0.004$, than for unchanged sites,
+$r_i=0.136\pm0.002$.
 The same ordering persists for $J_0=-4$.
 
 \begin{table}[t]
@@ -1416,13 +1416,13 @@ $J_0$ & Metric & Corrected spins & Unchanged spins \\
 \hline
 $0$
 & $|h_i|$ & $0.32\pm0.03$ & $1.08\pm0.02$ \\
-& $L_i$    & $7.91\pm0.06$ & $7.96\pm0.03$ \\
-& $r_i$    & $0.04\pm0.00$ & $0.14\pm0.00$ \\
+& $L_i$    & $7.91\pm0.06$ & $7.96\pm0.04$ \\
+& $r_i$    & $0.040\pm0.004$ & $0.136\pm0.002$ \\
 \hline
 $-4$
-& $|h_i|$ & $0.32\pm0.03$ & $1.09\pm0.02$ \\
+& $|h_i|$ & $0.32\pm0.03$ & $1.10\pm0.02$ \\
 & $L_i$    & $8.55\pm0.09$ & $8.58\pm0.04$ \\
-& $r_i$    & $0.04\pm0.00$ & $0.13\pm0.00$ \\
+& $r_i$    & $0.038\pm0.004$ & $0.128\pm0.002$ \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -1444,8 +1444,8 @@ the configuration is updated.
 
 For $J_0=-4$, differences in the organization of the three ensembles
 persist. As summarized in Table~\ref{tab:distance_metrics}, the
-cophenetic correlation coefficients are $0.8998$ for OIM+, $0.9300$ for
-DH--OIM+, and $0.9373$ for pure MH, indicating that all three
+cophenetic correlation coefficients are $0.900$ for OIM+, $0.930$ for
+DH--OIM+, and $0.937$ for pure MH, indicating that all three
 $\mathbb{Z}_2$-Hamming-distance structures are represented 
 well by the average-linkage hierarchy, with the highest correlation for
 pure MH. Both OIM+ and DH--OIM+ exhibit smaller intra-cluster distances
@@ -1499,15 +1499,15 @@ DH--OIM+/ best known&
 MH/ best known
 \\
 \hline
-G1  & 800  & 19176 & $+1$     & Random   & 11624 & 11618 & 11550 & 99.94\% & 99.36\% \\
-G6  & 800  & 19176 & $\pm1$   & Random   & 2178  & 2163  & 2113  & 99.31\% & 97.01\% \\
-G11 & 800  & 1600  & $\pm1$   & Toroidal & 564   & 562   & 562   & 99.64\% & 99.64\% \\
-G14 & 800  & 4694  & $+1$     & Planar   & 3064  & 3062  & 3040  & 99.93\% & 99.21\% \\
+G1  & 800  & 19176 & $+1$     & Random   & 11624 & 11618 & 11550 & 99.95\% & 99.36\% \\
+G6  & 800  & 19176 & $\pm1$   & Random   & 2178  & 2163  & 2113  & 99.31\% & 97.02\% \\
+G11 & 800  & 1600  & $\pm1$   & Toroidal & 564   & 562   & 562   & 99.65\% & 99.65\% \\
+G14 & 800  & 4694  & $+1$     & Planar   & 3064  & 3062  & 3040  & 99.93\% & 99.22\% \\
 G15 & 800  & 4661  & $+1$     & Planar   & 3050  & 3050  & 3023  & 100\% & 99.11\% \\
 G22 & 2000 & 19990 & $+1$     & Random   & 13359 & 13354 & 13161 & 99.96\% & 98.52\% \\
 G23 & 2000 & 19990 & $+1$     & Random   & 13344 & 13335 & 13160 & 99.93\% & 98.62\% \\
 G36 & 2000 & 11766 & $+1$     & Planar   & 7680  & 7675  & 7572 & 99.93\% & 98.59\% \\
-G39 & 2000 & 11778 & $\pm1$   & Planar   & 2408  & 2406  & 2266 & 99.91\% & 94.10\% \\
+G39 & 2000 & 11778 & $\pm1$   & Planar   & 2408  & 2406  & 2266 & 99.92\% & 94.10\% \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}

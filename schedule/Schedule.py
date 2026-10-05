@@ -43,8 +43,9 @@ for cfg in epochs:
     # Linear transition for Ks
     Ks_epoch = cfg["Ks_s"] * (1 - p_total) + cfg["Ks_f"] * p_total
     
-    # Direct quadratic decay for T_JN to ensure a visible curve
-    T_epoch = (cfg["T_s"] - cfg["T_m"]) * (1 - p_total)**2 + cfg["T_m"]
+    # Match production: interpolate the noise amplitude, then convert to T_JN.
+    Kn_epoch = np.sqrt(2 * cfg["T_s"]) * (1 - p_total) + np.sqrt(2 * cfg["T_m"]) * p_total
+    T_epoch = Kn_epoch**2 / 2
     
     # Direct time vector calculation for the epoch based on the anneal duration
     time_epoch = np.linspace(current_time, current_time + anneal_duration, num_points, endpoint=False)
