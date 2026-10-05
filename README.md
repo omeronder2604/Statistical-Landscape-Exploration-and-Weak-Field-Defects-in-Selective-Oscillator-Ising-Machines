@@ -1,6 +1,6 @@
 # Statistical Landscape Exploration and Weak-Field Defects in Selective Oscillator Ising Machines
 
-Research code, manuscript source, figures, and retained data accompanying the work by **Ömer Önder and Aydın Cem Keser**. [arXiv:2609.14550](https://arxiv.org/abs/2609.14550) is the public **v1 preprint**. [`paper/OIMp_v4.tex`](paper/OIMp_v4.tex) is the **current Physical Review E (PRE) submission source**; it is a later manuscript version.
+Research code, manuscript source, figures, and retained data accompanying the work by **Ömer Önder and Aydın Cem Keser**. [arXiv:2609.14550](https://arxiv.org/abs/2609.14550) is the public **v1 preprint**. [`paper/OIMp_v4.tex`](paper/OIMp_v4.tex) is the **current journal manuscript source**, prepared for submission to the intended target, Physical Review E (PRE); it is a later manuscript version.
 
 OIM+ combines oscillator evolution with energy-based selection and repopulation. DH-OIM+ applies a short Metropolis–Hastings (MH) refinement; pure MH is an independent comparison. The main simulations use Sherrington–Kirkpatrick (SK) matrices. Nine G-set Max-Cut graphs and historical oscillator checkpoints are also retained. See [Gset/README.md](Gset/README.md) for the limits of the G-set record.
 
@@ -8,7 +8,7 @@ OIM+ combines oscillator evolution with energy-based selection and repopulation.
 
 | Path | Contents |
 | --- | --- |
-| `paper/` | Current PRE TeX/BibTeX source and the 16 PDFs used by it in `paper/Figures/` |
+| `paper/` | Current journal manuscript TeX/BibTeX source and the 16 PDFs used by it in `paper/Figures/` |
 | `raw_data/` | Five SK NPZ archives; nine G-set graph texts, nine phase checkpoints, and the reported-results CSV |
 | `HPC/` | Single-realization and 30-realization SK MPI drivers for OIM+/DH-OIM+ and pure MH, including `J0=-4` variants and Slurm examples |
 | `OIM/`, `MH/` | Local analysis and plotting of the saved 30-realization SK archives |
@@ -95,4 +95,4 @@ The SK archives likewise do **not** retain full oscillator phase or noise histor
 
 ## Citation and license
 
-Cite the [public arXiv v1 preprint](https://arxiv.org/abs/2609.14550) when citing that version. The later PRE submission source is in `paper/`. Code in this repository is provided under the [MIT License](LICENSE).
+Cite the [public arXiv v1 preprint](https://arxiv.org/abs/2609.14550) when citing that version. The later journal manuscript source prepared for submission is in `paper/`. Code in this repository is provided under the [MIT License](LICENSE).
