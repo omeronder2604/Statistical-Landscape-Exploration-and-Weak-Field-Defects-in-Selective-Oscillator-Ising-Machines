@@ -231,3 +231,12 @@ slurm-*.err
 
 # Generated Palmer-Pond analysis artifacts
 PP/outputs/
+
+# Manuscript build products (keep paper/Figures/*.pdf)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.synctex.gz
+paper/*Notes.bib
+paper/OIMp_v4.pdf

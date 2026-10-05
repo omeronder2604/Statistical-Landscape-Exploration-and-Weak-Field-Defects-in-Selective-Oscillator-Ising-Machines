@@ -1,1 +1,0 @@
-We run single J realization with J_0=0 and global seed 52. This code is for TRUBA which Works on 2 cores with mpi logic. It saves npz that is used to plot single disorder realization graphs namely for dendrogram and energy progression.

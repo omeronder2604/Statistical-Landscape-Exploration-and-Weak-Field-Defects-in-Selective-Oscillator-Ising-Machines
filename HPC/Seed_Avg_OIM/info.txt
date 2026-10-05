@@ -1,1 +1,0 @@
-We run 30 different J realization. This code is for TRUBA which Works on 8 cores with mpi logic. It saves npz that is used to plot disorder averaged data.

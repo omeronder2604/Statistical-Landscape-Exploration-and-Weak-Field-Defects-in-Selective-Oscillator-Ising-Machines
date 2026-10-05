@@ -1,1 +1,0 @@
-Here, we load single J realization npz file to plot energy progression. We use global seed 52, and plot min max energy plotting, then mark the average trend.
