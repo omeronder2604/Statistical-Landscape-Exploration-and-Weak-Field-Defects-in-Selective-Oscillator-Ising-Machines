@@ -1,6 +1,6 @@
 # Statistical Landscape Exploration and Weak-Field Defects in Selective Oscillator Ising Machines
 
-Research code, manuscript source, figures, and retained data accompanying the work by **Ömer Önder and Aydın Cem Keser**. [arXiv:2609.14550](https://arxiv.org/abs/2609.14550) is the public **v1 preprint**. [`paper/OIMp_v4.tex`](paper/OIMp_v4.tex) is the **current journal manuscript source**, prepared for submission to the intended target, Physical Review E (PRE); it is a later manuscript version.
+Research code, manuscript source, figures, and retained data accompanying the work by **Ömer Önder and Aydın Cem Keser**. [arXiv:2609.14550](https://arxiv.org/abs/2609.14550) is the public **v1 preprint**. [`paper/OIMp_v4.tex`](paper/OIMp_v4.tex) is the **current journal manuscript source prepared for submission**; it is a later manuscript version.
 
 OIM+ combines oscillator evolution with energy-based selection and repopulation. DH-OIM+ applies a short Metropolis–Hastings (MH) refinement; pure MH is an independent comparison. The main simulations use Sherrington–Kirkpatrick (SK) matrices. Nine G-set Max-Cut graphs and historical oscillator checkpoints are also retained. See [Gset/README.md](Gset/README.md) for the limits of the G-set record.
 
