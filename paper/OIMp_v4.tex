@@ -1772,7 +1772,7 @@ speed of the collective analog stage, although they should not be identified
 directly with the numerical integration time used here.
 
 
-In a hardware implementation following this protocol, the digital intervention associated with selection and repopulation would occur only at the boundaries between annealing epochs, where the oscillator states are read out and binarized, their Ising energies evaluated, the higher-energy replicas discarded, and the surviving states used to reinitialize the next epoch. For comparison, population annealing uses temperature-dependent resampling to maintain an approximately equilibrium population during annealing \cite{Wang2015PopulationAnnealing}. OIM+ instead uses a simpler energy-ranked culling and replication step, without requiring the replica population to represent an equilibrium distribution. This makes the digital intervention particularly straightforward to interleave with the analog oscillator dynamics. The final defect-healing stage likewise requires only a comparatively short sequence of sequential Metropolis updates. The resulting architecture therefore delegates the large-scale exploration to fast, parallel oscillator dynamics while reserving digital computation for intermittent selection, state reinitialization, and targeted local polishing. On the tested G-set instances, this division of labor retains high optimization quality while requiring a substantially shorter sequential digital refinement stage than the independent pure-MH baseline.
+In a hardware implementation following this protocol, the digital intervention associated with selection and repopulation would occur only at the boundaries between annealing epochs, where the oscillator states are read out and binarized, their Ising energies evaluated, the higher-energy replicas discarded, and the surviving states used to reinitialize the next epoch. For comparison, population annealing uses temperature-dependent resampling to maintain an approximately equilibrium population during annealing~\cite{Wang2015PopulationAnnealing}. OIM+ instead uses a simpler energy-ranked culling and replication step, without requiring the replica population to represent an equilibrium distribution. This makes the digital intervention particularly straightforward to interleave with the analog oscillator dynamics. The final defect-healing stage likewise requires only a comparatively short sequence of sequential Metropolis updates. The resulting architecture therefore delegates the large-scale exploration to fast, parallel oscillator dynamics while reserving digital computation for intermittent selection, state reinitialization, and targeted local polishing. On the tested G-set instances, this division of labor retains high optimization quality while requiring a substantially shorter sequential digital refinement stage than the independent pure-MH baseline.
 
 The use of the fully connected SK model in the mechanistic analysis should
 be interpreted as a controlled testbed rather than as a requirement that
@@ -1822,13 +1822,24 @@ hybrid architectures in which collective analog exploration is combined
 with intermittent selection and targeted digital refinement.
 
 \begin{acknowledgments}
-The authors thank Cemal Yalabık for useful discussions. This work was supported by the TÜBİTAK 2232-A International Fellowship for
+The authors thank Cemal Yalabık for useful discussions and Alex Kamenev
+for a helpful question concerning the replica protocol. This work was supported by the TÜBİTAK 2232-A International Fellowship for
 Outstanding Researchers Program (Project No. 124C530), under which
 Ö. Ö. and A. C. K. received support. The numerical calculations reported
 in this paper were performed at TÜBİTAK ULAKBİM, High Performance and Grid
 Computing Center (TRUBA resources). All responsibility for the content of
 the publication rests with the authors and is not scientifically
-endorsed by TÜBİTAK.
+endorsed by TÜBİTAK. OpenAI ChatGPT (GPT-5.6 Sol) and OpenAI Codex (GPT-6 Sol) were used
+during manuscript preparation to assist with literature synthesis,
+inspection of code for potential bugs,  formal code
+refactoring, source inspection, revision of scientific writing, and
+mathematical consistency checks. All AI-assisted
+outputs were critically reviewed by the authors; mathematical details,
+cited literature, numerical values, scientific claims, and relevant code
+changes were independently verified against the primary sources,
+archived data, underlying code, and calculations. The scientific ideas,
+methodology, and conclusions are those of the authors, who take full
+responsibility for the content of the manuscript.
 \end{acknowledgments}
 
 \appendix
