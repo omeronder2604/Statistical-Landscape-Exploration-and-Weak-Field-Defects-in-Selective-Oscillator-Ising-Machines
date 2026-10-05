@@ -52,9 +52,7 @@ failure mode contrasts with the familiar difficulty of local-update
 annealing, where strongly correlated clusters can resist reorganization
 through sequences of unfavorable single-spin moves. A short
 Metropolis--Hastings refinement preferentially corrects the weak-field
-defects left by OIM+, indicating that the oscillator dynamics performs the
-dominant collective exploration while the remaining corrections are
-predominantly local. The weak fields arise mainly from cancellation among
+defects left by OIM+, supporting a picture in which the oscillator dynamics performs the collective exploration while the remaining corrections are predominantly local. The weak fields arise mainly from cancellation among
 competing interaction terms rather than from uniformly weak couplings,
 identifying frustration-induced local balance as their microscopic origin.
 The same qualitative behavior persists for an antiferromagnetically biased
@@ -596,30 +594,28 @@ Table~\ref{tab:simulation_parameters}.
         \label{fig:traj_mh}
     \end{subfigure}
 \caption{
-Energy evolution for the optimization protocols for a representative
-$J_0=0$ SK disorder realization.
-(a) Evolution of the OIM+ population across the four oscillator-annealing
-epochs as a function of the dimensionless oscillator time $t$.
-The solid curve shows the mean Ising energy over the 402 replicas,
-while the shaded region spans the minimum and maximum energies across the
-population. Vertical dashed lines indicate the boundaries between successive
-oscillator epochs. The dashed and dotted curves show the noise amplitude
-$K_n$ and SHIL strength $K_s$, respectively.
-(b) Energy evolution of the independent pure Metropolis--Hastings baseline
-for the same disorder realization, with the solid curve and shaded region
-again showing the population mean and minimum--maximum range over 402
-replicas. The dashed curve gives the MH temperature $T_{\rm MH}$.
-The inset shows the short $10^4$-proposal diagnostic MH refinement applied
-to the final selected OIM+ population on its own MH-proposal axis.
-For this realization, OIM+, DH--OIM+, and pure MH all reach the same
-minimum energy,
-$E_{\min}^{\mathrm{OIM+}}
-=E_{\min}^{\mathrm{DH-OIM+}}
-=E_{\min}^{\mathrm{MH}}
-=-105.37$.
-Thus, for this particular disorder realization, the diagnostic MH refinement
-does not further lower the best energy reached by OIM+, although it modifies
-the population-level structure analyzed below.
+	Energy evolution for the optimization protocols for a representative
+	$J_0=0$ SK disorder realization.
+	(a) Evolution of the OIM+ population across the four oscillator-annealing
+	epochs as a function of the dimensionless oscillator time $t$.
+	The solid curve shows the mean Ising energy over the 402 replicas,
+	while the shaded region spans the minimum and maximum energies across the
+	population. Vertical dashed lines indicate the boundaries between successive
+	oscillator epochs. The dashed and dotted curves show the noise amplitude
+	$K_n$ and SHIL strength $K_s$, respectively.
+	(b) Energy evolution of the independent pure Metropolis--Hastings baseline
+	for the same disorder realization, with the solid curve and shaded region
+	again showing the population mean and minimum--maximum range over 402
+	replicas. The dashed curve gives the MH temperature $T_{\rm MH}$.
+	The inset shows the short $10^4$-proposal diagnostic MH refinement applied
+	to the final selected OIM+ population on its own MH-proposal axis.
+	The minimum energy sampled during the OIM+ trajectory is approximately
+	$-105.37$; the same minimum is subsequently reached during the diagnostic
+	MH refinement.
+	Thus, for this particular disorder realization, the diagnostic MH refinement
+	does not further lower the best energy encountered during the OIM+ evolution,
+	although it further lowers the energy of the final selected population and
+	modifies the population-level structure analyzed below.
 }
 \label{fig:energy_evolution}
 \end{figure*}
@@ -922,17 +918,22 @@ population has already reached a low-energy region of the landscape, while
 the subsequent MH refinement produces only a comparatively modest
 additional decrease in the mean energy of the replica population.
 
+
 For the representative disorder realization shown in
-Fig.~\ref{fig:energy_evolution}, OIM+ has already reached the minimum energy
-later attained by both DH--OIM+ and pure MH, so the diagnostic refinement
-does not improve the best energy in this case. It does, however, further
-lower the mean energy of the replica population, shifting it from
-approximately $-103.1$ after OIM+ to $-104.6$ after refinement. The
-refinement consists of only $10^4$ single-spin proposals per replica, as
-summarized in Table~\ref{tab:mh_protocols}. Together, these observations
-suggest that the oscillator dynamics performs the dominant global search
-for this realization, while the Metropolis stage primarily acts as a local
-corrective mechanism within the selected replica population.
+Fig.~\ref{fig:energy_evolution}, the OIM+ trajectory transiently reaches
+an energy of approximately $-105.37$ during the oscillator evolution.
+After the final selection step, the minimum energy of the selected OIM+
+population is approximately $-105.22$, while the subsequent diagnostic
+MH refinement lowers it to $-105.37$. The refinement also lowers the mean
+energy of the representative population from approximately $-103.1$ to
+$-104.6$. The refinement consists of only $10^4$ single-spin proposals
+per replica, as summarized in Table~\ref{tab:mh_protocols}. Thus, this
+representative realization already shows that OIM+ brings the population
+into a low-energy region, while the short Metropolis stage provides
+additional local improvement. The ensemble-level diagnostics below
+determine more systematically the division of roles between collective
+oscillator exploration and residual local correction.
+
 
 To assess the robustness of this observation, Fig.~\ref{fig:energy_histogram} compares the distributions of final energies obtained from OIM+, the corresponding post-refinement DH--OIM+ states, and the independent pure Metropolis--Hastings baseline. While OIM+ already produces low-energy configurations, the diagnostic MH refinement systematically shifts the ensemble toward lower energies and reduces the incidence of high-energy outliers. The resulting improvement is obtained with only \(10^4\) additional single-spin MH proposals per replica, consistent with the interpretation of the refinement as a local correction to the preceding collective search.
 
@@ -1875,16 +1876,18 @@ number generator state. The descendant replicas therefore begin from the
 same selected phase state but subsequently experience distinct stochastic
 noise histories.
 
-All stochastic components are generated from a root seed of 42 using
-deterministic \texttt{SeedSequence} branches for disorder generation,
-replica initialization, oscillator epochs, individual replicas, and
-diagnostic MH refinement. This deterministic seed hierarchy makes reruns
-reproducible within a fixed implementation and numerical environment while
-assigning distinct pseudorandom streams to different replica histories.
-The archived analysis files retain the coupling matrices and paired pre-
-and post-refinement spin configurations, but not oscillator phase histories,
-noise trajectories, RNG states, explicit seeds, code hashes, or software
-versions.
+For the 30-realization SK OIM+/DH-OIM+ production runs, all stochastic
+components are generated from a root seed of 42 using deterministic
+\texttt{SeedSequence} branches for disorder generation, replica
+initialization, oscillator epochs, individual replicas, and diagnostic MH
+refinement. The representative single-realization calculation uses the same
+seed-hierarchy construction with root seed 52. This deterministic seed
+hierarchy makes reruns reproducible within a fixed implementation and
+numerical environment while assigning distinct pseudorandom streams to
+different replica histories. The archived SK OIM+/DH-OIM+ analysis files
+retain the coupling matrices and paired pre- and post-refinement spin
+configurations, but not oscillator phase histories, noise trajectories, RNG
+states, explicit seeds, code hashes, or software versions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The \nocite command causes all entries in a bibliography to be printed out
 
