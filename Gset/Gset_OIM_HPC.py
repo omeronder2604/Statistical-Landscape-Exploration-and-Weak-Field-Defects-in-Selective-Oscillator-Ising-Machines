@@ -179,6 +179,8 @@ if __name__ == "__main__":
             if rank == 0:
                 print(f"--- Simulating {g_file} (N={N}) ---", flush=True)
             
+            epoch_phis = []
+
             for idx, cfg in enumerate(epochs):
                 # Generate deterministic, non-overlapping random states for all nodes
                 replica_seeds = epoch_seqs[idx].generate_state(TOTAL_REPLICAS)
@@ -190,14 +192,29 @@ if __name__ == "__main__":
                     cfg["Ks_s"], cfg["Ks_f"], cfg["dt"], 
                     local_seeds, local_phis
                 )
+                epoch_phis.append(local_phis.copy())
 
             comm.Barrier()
             all_phis = comm.gather(local_phis, root=0)
+            all_epoch_phis = comm.gather(epoch_phis, root=0)
             
             if rank == 0:
                 flat_phis = np.vstack(all_phis)
+                flat_epoch_phis = [
+                    np.vstack([rank_epochs[e] for rank_epochs in all_epoch_phis])
+                    for e in range(len(epochs))
+                ]
                 save_name = f"checkpoint_{g_file}.npz"
-                np.savez(save_name, J=J, N=N, replica_states=flat_phis)
+                np.savez(
+                    save_name,
+                    J=J,
+                    N=N,
+                    replica_states=flat_phis,
+                    epoch_1_phis=flat_epoch_phis[0],
+                    epoch_2_phis=flat_epoch_phis[1],
+                    epoch_3_phis=flat_epoch_phis[2],
+                    epoch_4_phis=flat_epoch_phis[3]
+                )
                 print(f"Saved: {save_name}")
 
     # ---------------------------------------------------------
