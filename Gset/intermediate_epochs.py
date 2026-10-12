@@ -3,13 +3,14 @@
 import os
 import glob
 import re
+from pathlib import Path
 import numpy as np
 
 # ============================================================
 # 1. USER SETTINGS
 # ============================================================
 
-DATA_DIR = r"C:\Users\omero\Masaüstü\Git\Statistical-Landscape-Exploration-and-Weak-Field-Defects-in-Selective-Oscillator-Ising-Machines\raw_data\Gset"
+DATA_DIR = str(Path(__file__).resolve().parent.parent / "raw_data" / "Gset")
 
 KEEP_FRACTION = 1.0 / 3.0
 
