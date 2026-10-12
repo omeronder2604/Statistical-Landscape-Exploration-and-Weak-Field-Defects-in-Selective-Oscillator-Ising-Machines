@@ -182,7 +182,7 @@ same coupling matrix, but begin from distinct random phase configurations and
 follow independent noise histories. Successive epochs of collective oscillator
 annealing are interleaved with energy-based selection and repopulation. After
 each epoch, the higher-energy replicas are removed and the surviving low-energy
-configurations are replicated before oscillator evolution resumes. 
+configurations are replicated before oscillator evolution resumes.
 
 Population-level selection and repopulation have precedents in population
 annealing \cite{Wang2015GroundStates}. OIM+ combines this broad
@@ -349,7 +349,7 @@ $12500$ \\
 Total & & & & & $16650$ \\
 \end{tabular}
 \end{ruledtabular}
-\end{table*} 
+\end{table*}
 
 
 
@@ -359,7 +359,7 @@ J_{ij}
 \sim
 \mathcal N\left(\frac{J_0}{N},\frac{\sigma_J^2}{2N}\right),
 \end{equation}
-with symmetric interactions, $J_{ij}=J_{ji}$, and no self-couplings, $J_{ii}=0$. 
+with symmetric interactions, $J_{ij}=J_{ji}$, and no self-couplings, $J_{ii}=0$.
 The factor of $1/2$ in the variance reflects the matrix construction used here: the initially sampled coupling matrix is symmetrized according to $J\rightarrow(J+J^{T})/2$, which halves the off-diagonal variance. We choose the coupling scale as the unit of energy, setting \(\sigma_J=1\) throughout, while the mean coupling \(J_0\) is varied to control the interaction bias. We primarily consider the conventional SK model with $J_0=0$, corresponding to a symmetric distribution of ferromagnetic and antiferromagnetic couplings. To examine the behavior under an antiferromagnetic bias, in Sec.~\ref{sec:antiferro} we additionally consider $J_0=-4$, which shifts the coupling distribution toward antiferromagnetic interactions while preserving the dense random connectivity of the underlying graph.
 Further details of the disorder construction, replica initialization,
 stochastic-noise generation, and random-seed hierarchy are given in
@@ -411,11 +411,11 @@ T_{\rm JN}(t)
 =
 \frac{K_n^2(t)}{2},
 \end{equation}
-which determines the strength of the oscillator noise. 
+which determines the strength of the oscillator noise.
 
 The parameters $K_s$ and $K_n$ are varied during the annealing process according to a prescribed schedule described below in Sec.~\ref{sec:anneal}.
 The stochastic oscillator equations in Eq.~\eqref{eq:oim_dynamics} are
-integrated numerically using the Euler--Maruyama method. 
+integrated numerically using the Euler--Maruyama method.
 The integration time step $\Delta t$ is allowed to vary between annealing
 epochs, as specified in Table~\ref{tab:annealing_schedule}.
 
@@ -840,7 +840,7 @@ For two configurations, the cophenetic distance is the linkage height at
 which their branches first merge in the dendrogram. We quantify how faithfully
 the hierarchy represents the underlying geometry using the cophenetic
 correlation coefficient, defined as the Pearson correlation between the
-pairwise $\mathbb{Z}_2$-Hamming distances and their cophenetic distances. It therefore quantifies how faithfully the dendrogram represents the underlying pairwise-distance structure. 
+pairwise $\mathbb{Z}_2$-Hamming distances and their cophenetic distances. It therefore quantifies how faithfully the dendrogram represents the underlying pairwise-distance structure.
 
 To investigate the local origin of the residual corrections made by the
 diagnostic MH refinement, we analyze the local effective field~\cite{Palmer1979} acting on
@@ -963,7 +963,7 @@ pronounced concentrations at several energy values, indicating that many
 replicas reach energetically similar configurations. These configurations
 do not, however, collapse onto a single spin state. Their pairwise $\mathbb{Z}_2$-Hamming
 distances remain finite, showing that comparable energies can correspond
-to distinct configurations within the spin-glass landscape. 
+to distinct configurations within the spin-glass landscape.
 This behavior
 is consistent with the presence of multiple distinct, near-degenerate
 low-energy configurations.
@@ -994,16 +994,16 @@ measures summarized in Table~\ref{tab:distance_metrics}.
         \includegraphics[width=\textwidth]{Figures/Dendrogram_2_PostOscillator.pdf}
         \caption{}
     \end{subfigure}
-    \vspace{-0.1cm} 
-    
+    \vspace{-0.1cm}
+
     % Second Subfigure
     \begin{subfigure}[b]{\linewidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Dendrogram_3_PostMH.pdf}
         \caption{}
     \end{subfigure}
-    \vspace{-0.1cm} 
-    
+    \vspace{-0.1cm}
+
     % Third Subfigure
     \begin{subfigure}[b]{\linewidth}
         \centering
@@ -1532,7 +1532,7 @@ For $J_0=-4$, differences in the organization of the three ensembles
 persist. As summarized in Table~\ref{tab:distance_metrics}, the
 cophenetic correlation coefficients are $0.900$ for OIM+, $0.930$ for
 DH--OIM+, and $0.937$ for pure MH, indicating that all three
-$\mathbb{Z}_2$-Hamming-distance structures are represented 
+$\mathbb{Z}_2$-Hamming-distance structures are represented
 well by the average-linkage hierarchy, with the highest correlation for
 pure MH. Both OIM+ and DH--OIM+ exhibit smaller intra-cluster distances
 than pure MH, indicating more compact within-cluster organization,
@@ -1693,28 +1693,23 @@ Thus, maximizing the Max-Cut objective is equivalent to minimizing the
 corresponding Ising energy.
 
 
-For the G-set calculations, the system size and coupling matrix are
-determined by the corresponding benchmark instance. Both the archived E4
-phase population and the independent pure-MH baseline contain 448
-replicas per instance, providing a population-matched comparison.
-The reported DH--OIM+ values are obtained by binarizing each retained E4
-phase configuration with $s_i=\operatorname{sign}(\cos\phi_i)$ (zero mapped
-to $+1$) and applying $10^4$ single-spin Metropolis proposals per replica.
-The temperature decreases linearly from $T_{\rm MH}^{(i)}=0.1$ to
-$T_{\rm MH}^{(f)}=0.01$; replica seeds are generated by
-\texttt{SeedSequence(42+5000).generate\_state(448)}, as in
-\texttt{Gset\_OIM.py}. The pure-MH benchmark follows the annealing,
-settling, and measurement protocol described in Sec.~\ref{sec:healing},
-with the final temperature likewise set to $T_{\rm MH}^{(f)}=0.01$.
-
-
-
+For the G-set calculations, the system size and coupling matrix are determined
+by the corresponding benchmark instance. Both DH--OIM+ and the independent
+pure-MH baseline use 448 replicas per instance, providing a population-matched
+comparison. For the post-OIM+ MH refinement, each replica undergoes
+$10^4$ single-spin Metropolis proposals while the temperature is annealed
+linearly from $T_{\rm MH}=0.1$ to $0.01$. The pure-MH benchmark follows the
+annealing, settling, and measurement protocol described in Sec.~\ref{sec:healing}, with
+the final temperature likewise set to $T_{\rm MH}=0.01$.
 
 Table~\ref{tab:gset_results} summarizes the resulting Max-Cut performance.
 Across the nine tested instances, DH--OIM+ attains cut values close to the
 best-known solutions and equals or exceeds the pure-MH result in every
 case. In particular, DH--OIM+ reaches the best-known cut for G15 and
 achieves more than $99\%$ of the best-known value for all nine instances.
+The evolution of the G-set populations across the four oscillator epochs
+is summarized in Appendix~\ref{app:Intermediate}.
+
 The digital refinement following OIM+ uses only $10^4$ single-spin
 Metropolis proposals per replica, compared with $1.2\times10^5$ proposals
 per replica for the independent pure-MH baseline. Thus, within this
@@ -1829,6 +1824,114 @@ degrees of freedom they leave unresolved. This perspective motivates
 hybrid architectures in which collective analog exploration is combined
 with intermittent selection and targeted digital refinement.
 
+
+\begin{table*}[t]
+	\caption{
+		Intermediate Max-Cut performance of representative G-set instances across
+		the four oscillator epochs and after the subsequent defect-healing (DH)
+		refinement. For each epoch, we report the maximum cut, the population mean,
+		and the cutoff for the best-performing third of the 448 replicas. ``Best''
+		denotes the best-known reference value compiled by Goudet \emph{et al.}~	 \cite{Goudet2024}.
+	}
+	\label{tab:gset_epoch_cuts}
+	\centering
+	\footnotesize
+	\setlength{\tabcolsep}{3.2pt}
+	\resizebox{\textwidth}{!}{%
+		\begin{ruledtabular}
+			\begin{tabular}{c c r r r r @{\hspace{8mm}} c c r r r r}
+
+				Graph & Stage & Max-Cut & Mean & Top-third threshold & Best &
+				Graph & Stage & Max-Cut & Mean & Top-third threshold & Best \\
+				\hline
+
+				G1 & E1 & 11508 & 11406.33 & 11424 & 11624 &
+				G22 & E1 & 13070 & 12922.83 & 12947 & 13359 \\
+
+				& E2 & 11583 & 11528.67 & 11545 &  &
+				& E2 & 13305 & 13226.14 & 13246 &  \\
+
+				& E3 & 11613 & 11572.68 & 11589 &  &
+				& E3 & 13348 & 13309.61 & 13325 &  \\
+
+				& E4 & 11618 & 11582.66 & 11600 &  &
+				& E4 & 13354 & 13324.92 & 13340 &  \\
+
+				& DH & 11624 &  &  &  &
+				& DH & 13357 &  &  &  \\
+				\hline
+
+				G6 & E1 & 2051 & 1962.33 & 1981 & 2178 &
+				G23 & E1 & 13056 & 12917.78 & 12939 & 13344 \\
+
+				& E2 & 2126 & 2074.80 & 2084 &  &
+				& E2 & 13259 & 13204.25 & 13216 &  \\
+
+				& E3 & 2155 & 2116.35 & 2124 &  &
+				& E3 & 13327 & 13289.88 & 13298 &  \\
+
+				& E4 & 2163 & 2127.00 & 2133 &  &
+				& E4 & 13332 & 13306.46 & 13314 &  \\
+
+				& DH & 2177 &  &  &  &
+				& DH & 13339 &  &  &  \\
+				\hline
+
+				G11 & E1 & 434 & 374.04 & 382 & 564 &
+				G36 & E1 & 7276 & 7195.30 & 7206 & 7680 \\
+
+				& E2 & 550 & 529.37 & 534 &  &
+				& E2 & 7609 & 7564.51 & 7570 &  \\
+
+				& E3 & 560 & 553.30 & 554 &  &
+				& E3 & 7665 & 7642.98 & 7646 &  \\
+
+				& E4 & 562 & 555.43 & 558 &  &
+				& E4 & 7672 & 7654.77 & 7658 &  \\
+
+				& DH & 562 &  &  &  &
+				& DH & 7672 &  &  &  \\
+				\hline
+
+				G14 & E1 & 2928 & 2869.56 & 2878 & 3064 &
+				G39 & E1 & 2118 & 2020.11 & 2038 & 2408 \\
+
+				& E2 & 3041 & 3020.89 & 3025 &  &
+				& E2 & 2367 & 2323.35 & 2329 &  \\
+
+				& E3 & 3061 & 3050.80 & 3053 &  &
+				& E3 & 2406 & 2382.33 & 2386 &  \\
+
+				& E4 & 3062 & 3055.47 & 3057 &  &
+				& E4 & 2407 & 2389.98 & 2393 &  \\
+
+				& DH & 3062 &  & &  &
+				& DH & 2407 &  &  &  \\
+				\hline
+
+				G15 & E1 & 2909 & 2859.15 & 2867 & 3050 &
+				&    &      &         &      & \\
+
+				& E2 & 3030 & 3008.23 & 3012 &  &
+				&    &      &         &      & \\
+
+				& E3 & 3049 & 3038.46 & 3041 &  &
+				&    &      &         &      & \\
+
+				& E4 & 3050 & 3043.06 & 3045 &  &
+				&    &      &         &      & \\
+
+				& DH & 3050 &  &  &  &
+				&    &      &         &      & \\
+
+			\end{tabular}
+		\end{ruledtabular}%
+	}
+\end{table*}
+
+
+
+
 \begin{acknowledgments}
 The authors thank Cemal Yalabık for useful discussions and Alex Kamenev
 for a helpful question concerning the replica protocol. This work was supported by the TÜBİTAK 2232-A International Fellowship for
@@ -1911,119 +2014,17 @@ states, explicit seeds, code hashes, or software versions.
 
 \section{G-set Max-Cut benchmarks at intermediate epochs}
 \label{app:Intermediate}
-The committed G-set checkpoint archives retain 448 phase configurations
-after each of four oscillator epochs. Table~\ref{tab:gset_epoch_cuts}
-reports the maximum cut, mean cut, and top-third threshold of each retained
-population. These quantities show how the sampled low-energy population
-evolves across the four saved epochs. The DH entries are obtained by applying
-the specified seeded diagnostic refinement to the retained E4
-configurations.
 
-\begin{table*}[t]
-\caption{
-Intermediate Max-Cut performance of representative G-set instances after
-each saved oscillator epoch and after the specified diagnostic refinement
-(DH). ``Top-third threshold'' is the 149th-highest Max-Cut value among the
-448 configurations in each saved epoch population. ``Best'' denotes the best-known reference value compiled
-by Goudet \emph{et al.} \cite{Goudet2024}.
-}
-\label{tab:gset_epoch_cuts}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3.2pt}
-\resizebox{\textwidth}{!}{%
-\begin{ruledtabular}
-\begin{tabular}{c c r r r r @{\hspace{8mm}} c c r r r r}
+To complement the final G-set benchmark results in Table~\ref{tab:gset_results}, we examine how
+the optimization progresses across the four oscillator epochs. Table~\ref{tab:gset_epoch_cuts}
+reports the maximum and mean cut values after each epoch, together with the
+cut threshold defining the best-performing third of the replica population.
+Across the tested instances, the population shifts systematically toward
+higher cut values from epoch 1 to epoch 4, with the largest improvements occurring in
+the earlier epochs and progressively smaller gains as the annealing proceeds.
+The subsequent short DH refinement provides a final local correction and
+yields the DH--OIM+ values reported in Table~\ref{tab:gset_results}.
 
-Graph & Stage & Max-Cut & Mean & Top-third threshold & Best &
-Graph & Stage & Max-Cut & Mean & Top-third threshold & Best \\
-\hline
-
-G1 & E1 & 11508 & 11406.33 & 11424 & 11624 &
-G22 & E1 & 13070 & 12922.83 & 12947 & 13359 \\
-
-   & E2 & 11583 & 11528.67 & 11545 &  &
-    & E2 & 13305 & 13226.14 & 13246 &  \\
-
-   & E3 & 11613 & 11572.68 & 11589 &  &
-    & E3 & 13348 & 13309.61 & 13325 &  \\
-
-   & E4 & 11618 & 11582.66 & 11600 &  &
-    & E4 & 13354 & 13324.92 & 13340 &  \\
-
-   & DH & 11624 &  &  &  &
-    & DH & 13357 &  &  &  \\
-\hline
-
-G6 & E1 & 2051 & 1962.33 & 1981 & 2178 &
-G23 & E1 & 13056 & 12917.78 & 12939 & 13344 \\
-
-   & E2 & 2126 & 2074.80 & 2084 &  &
-    & E2 & 13259 & 13204.25 & 13216 &  \\
-
-   & E3 & 2155 & 2116.35 & 2124 &  &
-    & E3 & 13327 & 13289.88 & 13298 &  \\
-
-   & E4 & 2163 & 2127.00 & 2133 &  &
-    & E4 & 13332 & 13306.46 & 13314 &  \\
-
-   & DH & 2177 &  &  &  &
-    & DH & 13339 &  &  &  \\
-\hline
-
-G11 & E1 & 434 & 374.04 & 382 & 564 &
-G36 & E1 & 7276 & 7195.30 & 7206 & 7680 \\
-
-    & E2 & 550 & 529.37 & 534 &  &
-    & E2 & 7609 & 7564.51 & 7570 &  \\
-
-    & E3 & 560 & 553.30 & 554 &  &
-    & E3 & 7665 & 7642.98 & 7646 &  \\
-
-    & E4 & 562 & 555.43 & 558 &  &
-    & E4 & 7672 & 7654.77 & 7658 &  \\
-
-    & DH & 562 &  &  &  &
-    & DH & 7672 &  &  &  \\
-\hline
-
-G14 & E1 & 2928 & 2869.56 & 2878 & 3064 &
-G39 & E1 & 2118 & 2020.11 & 2038 & 2408 \\
-
-    & E2 & 3041 & 3020.89 & 3025 &  &
-    & E2 & 2367 & 2323.35 & 2329 &  \\
-
-    & E3 & 3061 & 3050.80 & 3053 &  &
-    & E3 & 2406 & 2382.33 & 2386 &  \\
-
-    & E4 & 3062 & 3055.47 & 3057 &  &
-    & E4 & 2407 & 2389.98 & 2393 &  \\
-
-    & DH & 3062 &  & &  &
-    & DH & 2407 &  &  &  \\
-\hline
-
-G15 & E1 & 2909 & 2859.15 & 2867 & 3050 &
-    &    &      &         &      & \\
-
-    & E2 & 3030 & 3008.23 & 3012 &  &
-    &    &      &         &      & \\
-
-    & E3 & 3049 & 3038.46 & 3041 &  &
-    &    &      &         &      & \\
-
-    & E4 & 3050 & 3043.06 & 3045 &  &
-    &    &      &         &      & \\
-
-    & DH & 3050 &  &  &  &
-    &    &      &         &      & \\
-
-\end{tabular}
-\end{ruledtabular}%
-}
-\end{table*}
-
-\clearpage
 
 \bibliography{OIMp_v4}% Produces the bibliography via BibTeX.
 
