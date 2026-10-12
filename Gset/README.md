@@ -1,12 +1,14 @@
 # G-set data and executable workflows
 
-The nine G-set rows in the manuscript use graph inputs and historical OIM+ checkpoint populations retained under `raw_data/Gset/`. The repository also contains programs that can be executed **now**. These are distinct kinds of evidence: the current MPI oscillator program is not established as the source of the historical checkpoints.
+The nine G-set rows in the manuscript use graph inputs and saved oscillator phase populations retained under `raw_data/Gset/`. This page describes the retained inputs and the available analysis and simulation programs.
 
-## A. Retained historical material
+## A. Retained data and reported results
 
-The tracked graph files are `G1.txt`, `G6.txt`, `G11.txt`, `G14.txt`, `G15.txt`, `G22.txt`, `G23.txt`, `G36.txt`, and `G39.txt`. Each has a matching `checkpoint_G*.txt.npz` file. All nine checkpoints contain the graph matrix `J`, node count `N`, and `replica_states`: **448 continuous-phase replicas**. They are pre-refinement inputs, not final DH-OIM+ solutions.
+The tracked graph files are `G1.txt`, `G6.txt`, `G11.txt`, `G14.txt`, `G15.txt`, `G22.txt`, `G23.txt`, `G36.txt`, and `G39.txt`. Each has a matching `checkpoint_G*.txt.npz` file. Each checkpoint contains the graph matrix `J`, node count `N`, and `epoch_1_phis` through `epoch_4_phis`: four saved populations of **448 continuous-phase configurations**. `replica_states` equals the retained E4 population. These are pre-refinement inputs; post-DH final configurations are not stored in the checkpoint NPZs.
 
-[`raw_data/Gset/gset_reported_results.csv`](../raw_data/Gset/gset_reported_results.csv) is a machine-readable transcription of the nine **reported manuscript table rows**. It is **not reconstructed archived run output**. Final configurations and run logs underlying those values were not retained.
+The intermediate table's maximum cut, mean cut, and top-third threshold (the 149th-highest cut among 448 configurations) are computed directly from each saved population. Run `python Gset/reproduce_reported_gset_results.py` from the repository root to recompute them and the reported DH diagnostic from committed inputs; use `--ref HEAD` to select the local commit explicitly. The script requires NumPy, Numba, and SciPy. The diagnostic binarizes E4 using `sign(cos(phi))`, then applies 10,000 single-spin Metropolis proposals per replica with a linear 0.1-to-0.01 temperature schedule and the seeded replica streams used by `Gset_OIM.py`. The script prints the best-known reference values and calculated percentages.
+
+[`raw_data/Gset/gset_reported_results.csv`](../raw_data/Gset/gset_reported_results.csv) is a machine-readable transcription of the nine **reported manuscript table rows**, not raw simulation output. Post-DH configurations and historical scheduler/job metadata are not part of the released checkpoint artifact set.
 
 ## B. Current local analysis and refinement code
 
@@ -19,11 +21,11 @@ From the **repository root**, edit the `TARGET_NPZ` and `TARGET_TXT` constants t
 (cd raw_data/Gset && python ../../Gset/Gset_MH.py)
 ```
 
-These are new executions. A matching instance name does not prove identity with the historical manuscript run.
+These commands perform local calculations and do not modify the retained checkpoints.
 
 ## C. Current MPI oscillator program
 
-`Gset_OIM_HPC.py` has a `RUN_MODE = "search"` path that reads the nine graph texts, evolves 448 phase replicas across four epochs, and writes `checkpoint_G*.txt.npz` files. **Its current search path does not perform the manuscript's energy-based selection and repopulation between epochs.** It is therefore **not a reproduction of the manuscript's selective OIM+ checkpoint history**, and it is **not established as the historical generator of the archived September checkpoints**.
+`Gset_OIM_HPC.py` has a `RUN_MODE = "search"` path that reads the nine graph texts, evolves 448 phase replicas across four epochs, and writes `checkpoint_G*.txt.npz` files. Its current search path does not perform energy-based selection and repopulation between epochs.
 
 The program also has an optional `RUN_MODE = "tuning"` path. Its current 0.2-to-0.1 MH settings differ from `Gset_OIM.py` and the manuscript's 0.1-to-0.01 G-set refinement settings. It imports `mpi4py` in either mode. Inspect source settings before using either path.
 
@@ -36,8 +38,4 @@ cp raw_data/Gset/G*.txt "$run_dir/"
 (cd "$run_dir" && mpirun -np 32 python "$repo_dir/Gset/Gset_OIM_HPC.py")
 ```
 
-This requires a compatible system MPI and suitable resources. For a multinode cluster job, choose a run directory on a filesystem shared by all nodes instead of a node-local temporary directory. `Gset.slurm` is a TRUBA-oriented example: it changes into its own `Gset/` script directory, so graph texts must be staged there for that exact example. If adapting the Slurm script, use a separate run directory and update its paths for that site. **Do not overwrite the retained historical `raw_data/Gset/checkpoint_G*.txt.npz` files.** Any files produced by the current search are new, nonselective-run checkpoints and must be labeled as such.
-
-## D. Missing historical provenance
-
-The retained data do not establish the original checkpoint generator's identity or revision, the selection/repopulation history, run logs, final refined DH-OIM+ configurations, pure-MH configurations, per-replica result arrays, or the exact original Python/package/MPI/compiler/BLAS environment. Current executions can produce new results; they cannot reconstruct the historical September checkpoint-producing run from the retained evidence alone.
+This requires a compatible system MPI and suitable resources. For a multinode cluster job, choose a run directory on a filesystem shared by all nodes instead of a node-local temporary directory. `Gset.slurm` is a TRUBA-oriented example: it changes into `/arf/scratch/omonder/Gset/phase_record/`, so graph texts must be staged there for that exact example. If adapting the Slurm script, use a separate run directory and update its paths for that site. Do not overwrite the released `raw_data/Gset/checkpoint_G*.txt.npz` files with output from a new search.
